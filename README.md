@@ -1,3 +1,11 @@
+#Referències
+- Chat GPT
+- https://www.youtube.com/watch?v=XYjOteYbCMo
+
+#Comentaris afegits
+- Degut a diversos errors del codi no he pogut comprovar que l'implementació funcioni.
+
+
 # AngularSeminari6
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.0.
