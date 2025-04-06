@@ -7,11 +7,13 @@ import { Observable, of } from 'rxjs';
 })
 export class AuthService {
   private apiUrl = "http://localhost:9000/api/auth";
+
   constructor(private http: HttpClient) { }
-  
+
   login(credentials: { email: string; password: string }): Observable<any> {
     return this.http.post(`${this.apiUrl}/login`, credentials);
   }
+
   loginWithGoogle(): void {
     window.location.href = `${this.apiUrl}/google`;
   }
@@ -28,5 +30,8 @@ export class AuthService {
   logout(): void {
     localStorage.removeItem('access_token');
   }
-}
 
+  RefreshToken(): Observable<any> {
+    return this.http.post(`${this.apiUrl}/refresh-token`, {}, { withCredentials: true });
+  }
+}

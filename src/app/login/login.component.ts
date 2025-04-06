@@ -1,3 +1,4 @@
+
 import { CommonModule } from '@angular/common';
 import { Component, inject, EventEmitter, Output } from '@angular/core';
 import { FormGroup, FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -64,13 +65,19 @@ export class LoginComponent implements OnInit {
       this.formularioLogin.markAllAsTouched();
       return;
     }
-
+  
     const loginData = this.formularioLogin.value;
-
+  
     this.authService.login(loginData).subscribe({
       next: (response) => {
         console.log('Login exitoso:', response);
+  
         localStorage.setItem('access_token', response.token);
+        if (response.refreshToken) {
+          localStorage.setItem('refresh_token', response.refreshToken);
+          console.log('Refresh token guardado:', response.refreshToken);
+        }
+  
         this.exportLoggedIn.emit(true);
       },
       error: (error) => {
